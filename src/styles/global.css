@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Brand tokens — tweak these to re-skin the whole site */
+@theme {
+  --color-accent: oklch(0.72 0.17 250);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}

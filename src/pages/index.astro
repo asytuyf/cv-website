@@ -1,0 +1,188 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// ─────────────────────────────────────────────────────────────
+// EDIT ME — all content lives here. Change text, add/remove items.
+// ─────────────────────────────────────────────────────────────
+const me = {
+  name: "Abdel Nabaoui",
+  role: "Software Developer",
+  tagline:
+    "I build fast, modern web apps — mostly with Next.js, React & TypeScript. Based in Luxembourg.",
+  location: "Luxembourg",
+  github: "https://github.com/asytuyf",
+  email: "your.email@example.com", // ← put your real email (or remove the button)
+  linkedin: "", // ← optional: https://linkedin.com/in/...
+};
+
+const skills = [
+  "TypeScript", "JavaScript", "React", "Next.js", "Astro",
+  "Tailwind CSS", "Node.js", "Python", "Supabase", "Git", "Figma", "NixOS",
+];
+
+const experience = [
+  {
+    role: "Freelance Web Developer",
+    org: "Groupe Arcade Immobilier",
+    period: "2025 — present",
+    points: [
+      "Built a modern Next.js showcase site with Whise real-estate API integration.",
+      "Responsive, SEO-friendly, deployed on Vercel.",
+    ],
+  },
+  {
+    role: "BSc Computer Science",
+    org: "University of Luxembourg",
+    period: "2022 — present",
+    points: [
+      "Semester projects (BSP) in software engineering, ML and task automation.",
+      "Object-oriented design, algorithms, full-stack development.",
+    ],
+  },
+];
+
+const projects = [
+  {
+    name: "Groupe Arcade",
+    desc: "Next.js 16 showcase site for a real-estate agency, with Whise listing integration.",
+    tags: ["Next.js", "Tailwind", "API"],
+    url: "",
+  },
+  {
+    name: "Genesis Vault",
+    desc: "Secure directory & dev-tools hub for personal projects. Next.js + Tailwind.",
+    tags: ["Next.js", "Tailwind"],
+    url: "https://github.com/asytuyf/Genesis-vault",
+  },
+  {
+    name: "Study Tracker",
+    desc: "Track courses, progress, assignments and exam prep. Built with Next.js & React.",
+    tags: ["Next.js", "React"],
+    url: "https://github.com/asytuyf/study-tracker-app",
+  },
+  {
+    name: "Diceout Fitness",
+    desc: "Roll the dice for your next workout — a randomized fitness app.",
+    tags: ["Web", "Fun"],
+    url: "https://github.com/asytuyf/Diceout-fitness",
+  },
+];
+
+const nav = [
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#contact", label: "Contact" },
+];
+---
+
+<Layout title={`${me.name} — ${me.role}`}>
+  <!-- Nav -->
+  <header class="sticky top-0 z-50 border-b border-white/5 bg-neutral-950/70 backdrop-blur">
+    <nav class="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
+      <a href="#top" class="font-bold tracking-tight text-white">{me.name.split(" ")[0]}<span class="text-accent">.</span></a>
+      <ul class="hidden gap-7 text-sm sm:flex">
+        {nav.map((n) => (
+          <li><a href={n.href} class="text-neutral-400 transition hover:text-white">{n.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top" class="mx-auto max-w-4xl px-6">
+    <!-- Hero -->
+    <section class="relative py-24 sm:py-32">
+      <div class="pointer-events-none absolute -top-24 left-1/2 -z-10 h-72 w-72 -translate-x-1/2 rounded-full bg-accent/20 blur-[120px]"></div>
+      <p class="mb-4 text-sm font-medium text-accent">👋 Hi, I'm</p>
+      <h1 class="text-5xl font-extrabold tracking-tight text-white sm:text-7xl">{me.name}</h1>
+      <p class="mt-3 text-xl font-semibold text-neutral-400 sm:text-2xl">{me.role}</p>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-neutral-400">{me.tagline}</p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a href={me.github} target="_blank" rel="noopener"
+           class="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-neutral-950 transition hover:bg-neutral-200">GitHub</a>
+        {me.email && (
+          <a href={`mailto:${me.email}`}
+             class="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/5">Email me</a>
+        )}
+        {me.linkedin && (
+          <a href={me.linkedin} target="_blank" rel="noopener"
+             class="rounded-full border border-white/15 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/5">LinkedIn</a>
+        )}
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="border-t border-white/5 py-16">
+      <h2 class="mb-6 text-sm font-semibold uppercase tracking-widest text-neutral-500">About</h2>
+      <p class="max-w-2xl text-lg leading-relaxed text-neutral-300">
+        Computer-science student and web developer who likes turning ideas into clean,
+        fast products. I care about good UX, maintainable code and shipping. Comfortable
+        across the stack, currently focused on the React / Next.js ecosystem.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-2">
+        {skills.map((s) => (
+          <span class="rounded-md border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-neutral-300">{s}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="border-t border-white/5 py-16">
+      <h2 class="mb-8 text-sm font-semibold uppercase tracking-widest text-neutral-500">Experience</h2>
+      <div class="space-y-10">
+        {experience.map((e) => (
+          <div class="grid gap-2 sm:grid-cols-[160px_1fr]">
+            <div class="text-sm text-neutral-500">{e.period}</div>
+            <div>
+              <h3 class="font-semibold text-white">{e.role} <span class="text-neutral-500">· {e.org}</span></h3>
+              <ul class="mt-2 space-y-1.5 text-neutral-400">
+                {e.points.map((p) => (
+                  <li class="relative pl-5 before:absolute before:left-0 before:text-accent before:content-['▸']">{p}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="border-t border-white/5 py-16">
+      <h2 class="mb-8 text-sm font-semibold uppercase tracking-widest text-neutral-500">Projects</h2>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {projects.map((p) => (
+          <a href={p.url || "#"} target={p.url ? "_blank" : "_self"} rel="noopener"
+             class="group rounded-xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-accent/40 hover:bg-white/[0.04]">
+            <h3 class="font-semibold text-white group-hover:text-accent">{p.name}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-400">{p.desc}</p>
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              {p.tags.map((t) => (
+                <span class="rounded bg-white/5 px-2 py-0.5 text-xs text-neutral-500">{t}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="border-t border-white/5 py-20 text-center">
+      <h2 class="text-3xl font-bold text-white">Let's work together</h2>
+      <p class="mx-auto mt-3 max-w-md text-neutral-400">
+        Open to freelance work and interesting projects. The fastest way to reach me is below.
+      </p>
+      <div class="mt-8 flex justify-center gap-3">
+        {me.email && (
+          <a href={`mailto:${me.email}`}
+             class="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-neutral-950 transition hover:opacity-90">Say hello</a>
+        )}
+        <a href={me.github} target="_blank" rel="noopener"
+           class="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/5">GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/5 py-8 text-center text-sm text-neutral-600">
+    © {new Date().getFullYear()} {me.name} · Built with Astro &amp; Tailwind
+  </footer>
+</Layout>
